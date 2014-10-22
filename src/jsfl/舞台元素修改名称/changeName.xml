@@ -1,0 +1,12 @@
+﻿<dialog buttons="accept, cancel" title="changeName">
+<vbox>
+	<hbox>
+		<label control="prefix" value="prefix:" />
+		<textbox id="prefix" value="" />
+	</hbox>
+	<hbox>
+		<label control="suffix" value="suffix:" />
+		<textbox id="suffix" value="" />
+	</hbox>
+</vbox>
+</dialog>

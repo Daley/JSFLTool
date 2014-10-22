@@ -1,0 +1,13 @@
+﻿<!-- by 文明 -->
+<dialog buttons="accept, cancel" title="Renamer">
+<vbox>
+	<hbox>
+		<label control="changeType" value="修改类型:" />
+		<textbox id="changeType" value="" />
+	</hbox>
+	<hbox>
+		<label control="prefix" value="前缀:" />
+		<textbox id="prefix" value="" />
+	</hbox>
+</vbox>
+</dialog>
