@@ -6,7 +6,7 @@ newSel = dom.selection;
 
 var nameStr='mc_item';
 fl.outputPanel.clear();
-fl.trace("1 输出所有选中项的名字\n2,name会按序号命名\n3,name,row,col多行多列\n4,name会查找所有包含name的元件名");
+fl.trace("1 输出所有选中项的名字\n2,name会按序号命名\n3,name,row,col多行多列\n4,name会查找所有包含name的元件名\n5,name1,name2会查找所有导出类name1子串并用name2替换");
 
 var pos=[];
 if( newSel.length <= 0 ){
@@ -15,18 +15,20 @@ if( newSel.length <= 0 ){
 
 	fl.trace('start...');
 	var params=prompt("请输入参数");
+	
 	var paramsArr=params.split(",");
 	nameStr=paramsArr[1];
 	switch(paramsArr[0]){
 		case "1":
 			outputNames(newSel);
 			break ;
-		case "2":			
+		case "2":
+			round(newSel);
 			batName(newSel);
 			outputNames(newSel);
 			break ;
 		case "3":
-			
+			round(newSel);
 			//处理这个数组为3行，5列
 			batNameHasColRaw(newSel,paramsArr[2],paramsArr[3]);
 			outputNames(newSel);
@@ -34,8 +36,10 @@ if( newSel.length <= 0 ){
 		case "4":
 			dealNowDom(dom,nameStr);
 			break ;
+		case "5":
+			replaceName(dom,paramsArr[1],paramsArr[2]);
+			break ;
 	}
-
 
 
 
@@ -72,13 +76,19 @@ function sortFun(o1,o2){
 	return 0;
 }
 
+function round(newSel){
+	for( i=0; i<newSel.length; i++ )
+	{
+		newSel[i].x=Math.round(newSel[i].x);
+		newSel[i].y=Math.round(newSel[i].y);	
+	}
+}
+
 function sortFun2(o1,o2){
-	
-	if(o1.y>o2.y) return -1;				
-	if(o2.y>o1.y) return 1;				
-	if(o1.x>o2.x) return -1;				
-	if(o2.x>o1.x) return 1;				
-	return 0;
+	if(o1.x!=o2.x){		
+		return o1.x-o2.x
+	}		
+	return o1.y-o2.y;
 }
 
 //策略2，按行与列排布
@@ -158,5 +168,23 @@ function dealNowDom(dealDom,findName){
 		}
 	}else{
 		fl.trace("没找到");
+	}
+}
+
+function replaceName(dealDom,findName,replaceTo){
+	var lib = dealDom.library;
+	var arr = lib.items;
+	
+	var inc=0;
+	for(var i=0;i<arr.length;i++)
+	{
+		if(arr[i].linkageClassName&&arr[i].linkageClassName.indexOf(findName)>-1){
+			var newClazz=arr[i].linkageClassName.replace(findName,replaceTo);
+			fl.trace("找到了:::"+arr[i].name+":::"+arr[i].linkageClassName+":::"+newClazz);
+			//lib.editItem(arr[i].name);
+			//break;
+			arr[i].linkageClassName=newClazz;
+			inc++;
+		}		
 	}
 }
