@@ -39,6 +39,9 @@ if( newSel.length <= 0 ){
 		case "5":
 			replaceName(dom,paramsArr[1],paramsArr[2]);
 			break ;
+		case "6":
+			replaceName2(dom,paramsArr[1],paramsArr[2]);
+			break ;
 	}
 
 
@@ -184,6 +187,24 @@ function replaceName(dealDom,findName,replaceTo){
 			//lib.editItem(arr[i].name);
 			//break;
 			arr[i].linkageClassName=newClazz;
+			inc++;
+		}		
+	}
+}
+
+function replaceName2(dealDom,findName,replaceTo){
+	var lib = dealDom.library;
+	var arr = dealDom.selection;
+	
+	var inc=0;
+	for(var i=0;i<arr.length;i++)
+	{
+		if(arr[i].name&&arr[i].name.indexOf(findName)>-1){
+			var newName=arr[i].name.replace(findName,replaceTo);
+			fl.trace("ур╣╫ак:::"+arr[i].name+"::"+newName);
+			//lib.editItem(arr[i].name);
+			//break;
+			arr[i].name=newName;
 			inc++;
 		}		
 	}

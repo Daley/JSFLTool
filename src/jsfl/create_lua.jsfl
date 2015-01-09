@@ -8,7 +8,7 @@ var labs=[
 ]
 
 var descs=[
-	"lst:Ulist",
+	"lst:UList",
 	"slst:ScrollList",
 	"rdo:URadio|UTextRadio",
 	"btn:UButton|UTextButton",	
@@ -17,6 +17,7 @@ var descs=[
 	"sv:UScrollView",
 	"bg:UBg/UScale9Grid",	
 	"lbl:ULabel/UBitmapLabel",
+	"rich:URichText",
 	"pb:UProgressBar",
 	"txt:UTextField",
 	"icon:IconView",
@@ -144,7 +145,9 @@ function common(item,names){
 	var headStr=rep(tmpHead,{name:item.name,type:type})
 	var bodyStr=rep(tmpBody,{space:spaceStr,name:item.name,news:newStr})
 	//head.push(headStr); ²»ÒªÁË
-	body.push(headStr);
+	if(space=="local"){
+		body.push(headStr);
+	}
 	body.push(bodyStr);
 }
 
@@ -280,10 +283,11 @@ function round(newSel){
 }
 
 function sortFun(o1,o2){
-	if(o1.x!=o2.x){		
-		return o1.x-o2.x
-	}		
-	return o1.y-o2.y;
+	// if(o1.x!=o2.x){		
+	// 	return o1.x-o2.x
+	// }		
+	// return o1.y-o2.y;
+	return o2.name>o1.name?-1:1
 }
 
 

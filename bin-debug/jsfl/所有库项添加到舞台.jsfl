@@ -12,7 +12,7 @@ function dealNowDom(dealDom){
 	for(var i=0;i<arr.length;i++)
 	{
 		var item=arr[i];
-		if(item.itemType!="folder"){			
+		if(item.linkageClassName&&item.linkageClassName.length>0){			
 			lib.addItemToDocument({x:0,y:0},item.name);			
 		}		
 	}

@@ -110,6 +110,7 @@ package
 //			for(var i:int=0;i<_btns.length;i++){
 //				_btns[i].addEventListener(MouseEvent.CLICK,onClick);
 //			}
+			
 		}
 		
 		private function onClick(e:MouseEvent):void{

@@ -20,7 +20,10 @@ if(items.length==0){
 
 for each (var item in items)
 {
-	item.scalingGrid=true;
+	if(item.scalingGrid!=true){
+		item.scalingGrid=true;
+	}
+	
 	if (item.scalingGrid)
 	{
 		fl.trace("¥¶¿Ì"+item.name);
